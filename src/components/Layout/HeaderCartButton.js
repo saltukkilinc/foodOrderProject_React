@@ -1,9 +1,9 @@
 import styles from "./HeaderCardButton.module.css";
 import CardIcon from "../Card/CardIcon";
 
-const HeaderCardButton = () => {
+const HeaderCardButton = ({onShowCard}) => {
   return (
-    <button className={styles.button}>
+    <button className={styles.button} onClick={() => onShowCard()}>
       <span className={styles.icon}>
         <CardIcon />
       </span>
