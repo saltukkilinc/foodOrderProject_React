@@ -9,9 +9,13 @@ const Card = ({ onHideCard }) => {
   const totalAmount = `$${ctx.totalAmount.toFixed(2)}`;
   const hasItems = ctx.items.length > 0;
 
-  const cardItemAddhandler = () => {};
+  const cardItemAddHandler = (item) => {
+    ctx.addItem({...item, amount: 1})
+  };
 
-  const cardItemRemoveHandler = () => {};
+  const cardItemRemoveHandler = (id) => {
+    ctx.deleteItem(id)
+  };
 
   const cardItems = (
     <ul className={styles["card-items"]}>
@@ -22,7 +26,7 @@ const Card = ({ onHideCard }) => {
           amount={item.amount}
           price={item.price}
           onRemove={cardItemRemoveHandler.bind(null,item.id)}
-          onAdd={cardItemAddhandler.bind(null, item)}
+          onAdd={cardItemAddHandler.bind(null, item)}
         />
       ))}
     </ul>
@@ -36,12 +40,10 @@ const Card = ({ onHideCard }) => {
         <span>{totalAmount}</span>
       </div>
       <div className={styles.actions}>
-        <button className={styles["button-alt"]}>Order</button>
-        {hasItems && (
-          <button className={styles.button} onClick={() => onHideCard()}>
-            Close
-          </button>
-        )}
+        <button className={styles.button} onClick={() => onHideCard()}>
+          Close
+        </button>
+        {hasItems && <button className={styles["button-alt"]}>Order</button>}
       </div>
     </Modal>
   );

@@ -11,8 +11,11 @@ const HeaderCardButton = ({onShowCard}) => {
     return currentNum + item.amount
   }, 0)
 
+
+  const btnStyles = `${styles.button} ${styles.bump}`
+
   return (
-    <button className={styles.button} onClick={() => onShowCard()}>
+    <button className={btnStyles} onClick={() => onShowCard()}>
       <span className={styles.icon}>
         <CardIcon />
       </span>
