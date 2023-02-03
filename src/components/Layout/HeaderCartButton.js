@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import CardContext from "../../store/card-context";
 import styles from "./HeaderCardButton.module.css";
 import CardIcon from "../Card/CardIcon";
 
 const HeaderCardButton = ({onShowCard}) => {
+  const [isBtnHighlighted, setIsBtnHighlighted] = useState(false)
   // Consumer yerine hook kullanıyorum
   const cardCtx = useContext(CardContext);
 
@@ -12,7 +13,25 @@ const HeaderCardButton = ({onShowCard}) => {
   }, 0)
 
 
-  const btnStyles = `${styles.button} ${styles.bump}`
+  const btnStyles = `${styles.button} ${isBtnHighlighted ? styles.bump : ''}`;
+
+  const { items } = cardCtx;
+
+  useEffect(() => {
+    if(items.length === 0) {
+      return;
+    };
+    setIsBtnHighlighted(true);
+
+    const timer = setTimeout(() => {
+      setIsBtnHighlighted(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    }
+
+  }, [items])
 
   return (
     <button className={btnStyles} onClick={() => onShowCard()}>
