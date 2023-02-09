@@ -11,6 +11,17 @@
   padding: 0;
 }
 
+.loadingMenu {
+  text-align: center;
+  color: aliceblue;
+  font-size: 1rem;
+}
+
+.errorMenu{
+  text-align: center;
+  color: red;
+}
+
 @keyframes meals-appear {
   from {
     opacity: 0;

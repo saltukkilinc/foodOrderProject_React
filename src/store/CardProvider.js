@@ -55,8 +55,14 @@ const cardReducer = (state, action) => {
 
   } 
 
+  if ( action.type === "CLEARCARD") {
+    return defaultState;
+  }
+
   return defaultState;
 };
+
+
 
 const CardProvider = ({ children }) => {
   const [cardState, cardDispatch] = useReducer(cardReducer, defaultState);
@@ -69,12 +75,17 @@ const CardProvider = ({ children }) => {
     cardDispatch({ type: "DELETE", id: id });
   };
 
+  const clearCardHandler = () => {
+    cardDispatch({ type: "CLEARCARD"})
+  }
+
   // Normalde value attribute' una geçtiğim objeyi kolaylık olsun diye dışarda tanımladım.
   const cardContextForValueProp = {
     items: cardState.items,
     totalAmount: cardState.totalAmount,
     addItem: addItemHandler,
     deleteItem: deleteItemHandler,
+    clearCard: clearCardHandler
   };
 
   return (

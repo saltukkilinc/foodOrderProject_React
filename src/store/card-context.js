@@ -4,7 +4,8 @@ const CardContext = React.createContext({
   items: [],
   totalAmount: 0,
   addItem: (item) => {},
-  deleteItem: (id) => {}
+  deleteItem: (id) => {},
+  clearCard: () => {}
 })
 
 export default CardContext;
